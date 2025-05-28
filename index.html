@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Магазин</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Roboto', sans-serif;
+      margin: 0;
+      background: #ffffff;
+      color: #000000;
+      padding: 16px;
+    }
+
+    .title {
+      font-size: 20px;
+      font-weight: 500;
+      margin-bottom: 12px;
+    }
+
+    .product {
+      border: 1px solid #e0e0e0;
+      border-radius: 12px;
+      padding: 16px;
+      margin-bottom: 12px;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+    }
+
+    .product-title {
+      font-weight: 500;
+      margin-bottom: 8px;
+    }
+
+    .price {
+      font-weight: bold;
+      color: #2a8ef5;
+    }
+
+    button {
+      background: #2a8ef5;
+      color: white;
+      border: none;
+      padding: 10px 16px;
+      border-radius: 8px;
+      font-weight: bold;
+      cursor: pointer;
+      width: 100%;
+      margin-top: 8px;
+    }
+
+    button:active {
+      background: #1976d2;
+    }
+  </style>
+</head>
+<body>
+  <div class="title">Выберите товар</div>
+
+  <div class="product">
+    <div class="product-title">Бравл Пасс Плюс</div>
+    <div class="price">829₽</div>
+    <button onclick="buy('brawl_plus')">Купить</button>
+  </div>
+
+  <div class="product">
+    <div class="product-title">Бравл Пасс</div>
+    <div class="price">519₽</div>
+    <button onclick="buy('brawl')">Купить</button>
+  </div>
+
+  <div class="product">
+    <div class="product-title">Про Пасс</div>
+    <div class="price">1949₽</div>
+    <button onclick="buy('pro_pass')">Купить</button>
+  </div>
+
+  <script>
+    function buy(type) {
+      fetch('/buy', {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({ item: type })
+      }).then(() => alert('Заявка отправлена'));
+    }
+  </script>
+</body>
+</html>
